@@ -1,5 +1,6 @@
 package token
 
+// What type of token are we dealing with.
 type TokenType string
 
 type Token struct {
@@ -8,26 +9,27 @@ type Token struct {
 }
 
 const (
-	ILLEGAL = "ILLEGAL" 
-	EOF = "EOF"
+	ILLEGAL = "ILLEGAL"
+	EOF     = "EOF"
 
 	// Identifiers + literals
 	IDENT = "IDENT" // add, foobar, x, y, ...
-	INT = "INT" // 1343456
+	INT   = "INT"   // 1343456
 
 	// Operators
-	ASSIGN   = "="
-	PLUS     = "+"
+	ASSIGN = "="
+	PLUS   = "+"
+	MINUS  = "-"
 
 	// Delimiters
 	COMMA     = ","
 	SEMICOLON = ";"
-	LPAREN = "("
-	RPAREN = ")"
-	LBRACE = "{"
-	RBRACE = "}"
+	LPAREN    = "("
+	RPAREN    = ")"
+	LBRACE    = "{"
+	RBRACE    = "}"
 
 	// Keywords
 	FUNCTION = "FUNCTION"
-	LET = "LET" 
+	LET      = "LET"
 )

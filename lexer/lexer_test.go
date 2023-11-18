@@ -6,7 +6,7 @@ import (
 )
 
 func TestNxtToken(t *testing.T) {
-	input := `=+(){},;`
+	input := `=+-(){},;`
 
 	tests := []struct {
 		expectedType    token.TokenType
@@ -14,6 +14,7 @@ func TestNxtToken(t *testing.T) {
 	}{
 		{token.ASSIGN, "="},
 		{token.PLUS, "+"},
+		{token.MINUS, "-"},
 		{token.LPAREN, "("},
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
@@ -23,19 +24,19 @@ func TestNxtToken(t *testing.T) {
 		{token.EOF, ""},
 	}
 
-	l := New(input)
+	lexer := New(input)
 
-	for i, tt := range tests {
-		tok := l.NextToken()
+	for i, testToken := range tests {
+		currentToken := lexer.NextToken()
 
-		if tok.Type != tt.expectedType {
+		if currentToken.Type != testToken.expectedType {
 			t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q",
-				i, tt.expectedType, tok.Type)
+				i, testToken.expectedType, currentToken.Type)
 		}
 
-		if tok.Literal != tt.expectedLiteral {
+		if currentToken.Literal != testToken.expectedLiteral {
 			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q",
-				i, tt.expectedLiteral, tok.Literal)
+				i, testToken.expectedLiteral, currentToken.Literal)
 		}
 	}
 }

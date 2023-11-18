@@ -6,11 +6,12 @@ import (
 
 type Lexer struct {
 	input        string
-	position     int
+	position     int  // points to the position of 'ch'
 	readPosition int  // comes after the curr position
 	ch           byte // current char under examination
 }
 
+// New initializes a lexer object with an input at the first ch of that input.
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
 	l.readChar()
@@ -18,6 +19,7 @@ func New(input string) *Lexer {
 }
 
 func (l *Lexer) readChar() {
+	// If we reached the end of our input.
 	if l.readPosition >= len(l.input) {
 		l.ch = 0
 	} else {
